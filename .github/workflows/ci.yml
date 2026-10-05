@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm test
+      - name: Validate manifest and view
+        run: |
+          node -e "JSON.parse(require('fs').readFileSync('webapp/manifest.json','utf8'))"
+          python3 -c "import xml.dom.minidom as m; m.parse('webapp/view/Main.view.xml')"
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build -t ui5-bw-explorer .
+      - run: |
+          docker run -d -p 8080:80 ui5-bw-explorer
+          sleep 2
+          curl -sf localhost:8080/index.html | grep -q "BW Explorer"
+          curl -sf localhost:8080/manifest.json | grep -q "bw.explorer"
