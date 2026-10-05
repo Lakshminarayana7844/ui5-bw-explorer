@@ -1,4 +1,4 @@
-<mvc:View controllerName="bw.explorer.controller.Main"
+<mvc:View controllerName="bw.explorer.controller.Main" displayBlock="true" height="100%"
   xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core">
   <Page title="BW Explorer" busy="{/busy}">
     <content>
