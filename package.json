@@ -1,0 +1,9 @@
+{
+  "name": "ui5-bw-explorer",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "start": "npx http-server webapp -p 8080"
+  }
+}
