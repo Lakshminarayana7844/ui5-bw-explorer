@@ -48,5 +48,5 @@ docker run -p 8080:80 ui5-bw-explorer
 
 ## Notes
 
-- UI5 is loaded from the OpenUI5 CDN (1.120.17, Horizon theme).
+- UI5 is loaded from the OpenUI5 CDN (1.120.30, Horizon theme).
 - The $filter builder escapes single quotes and ignores a non numeric quantity.
