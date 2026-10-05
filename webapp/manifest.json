@@ -1,0 +1,15 @@
+{
+  "_version": "1.60.0",
+  "sap.app": {
+    "id": "bw.explorer",
+    "type": "application",
+    "title": "BW Explorer",
+    "applicationVersion": { "version": "1.0.0" },
+    "dataSources": { "bw": { "uri": "http://localhost:8000/odata", "type": "OData" } }
+  },
+  "sap.ui": { "technology": "UI5", "deviceTypes": { "desktop": true, "tablet": true, "phone": true } },
+  "sap.ui5": {
+    "rootView": { "viewName": "bw.explorer.view.Main", "type": "XML", "async": true, "id": "main" },
+    "dependencies": { "minUI5Version": "1.120.0", "libs": { "sap.m": {}, "sap.ui.core": {} } }
+  }
+}
