@@ -1,0 +1,73 @@
+<mvc:View controllerName="bw.explorer.controller.Main"
+  xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core">
+  <Page title="BW Explorer" busy="{/busy}">
+    <content>
+      <Panel headerText="Filters" expandable="true" expanded="true">
+        <HBox wrap="Wrap" class="sapUiSmallMargin">
+          <VBox class="sapUiSmallMarginEnd">
+            <Label text="Region"/>
+            <Select selectedKey="{/filters/Region}">
+              <core:Item key="" text="All"/>
+              <core:Item key="EMEA" text="EMEA"/>
+              <core:Item key="APAC" text="APAC"/>
+              <core:Item key="AMER" text="AMER"/>
+            </Select>
+          </VBox>
+          <VBox class="sapUiSmallMarginEnd">
+            <Label text="Material"/>
+            <Input value="{/filters/Material}" placeholder="M-100" width="8rem"/>
+          </VBox>
+          <VBox class="sapUiSmallMarginEnd">
+            <Label text="Min quantity"/>
+            <Input value="{/filters/minQuantity}" type="Number" width="8rem"/>
+          </VBox>
+          <VBox justifyContent="End">
+            <HBox>
+              <Button text="Search" type="Emphasized" press="onSearch" class="sapUiTinyMarginEnd"/>
+              <Button text="Reset" press="onReset"/>
+            </HBox>
+          </VBox>
+        </HBox>
+      </Panel>
+      <Panel headerText="Summary (all rows matching the filters, {/source})">
+        <HBox wrap="Wrap" class="sapUiSmallMargin">
+          <ObjectNumber number="{/summary/rows}" unit="rows" class="sapUiMediumMarginEnd"/>
+          <ObjectNumber number="{/summary/netValue}" unit="EUR net value" class="sapUiMediumMarginEnd"/>
+          <ObjectNumber number="{/summary/quantity}" unit="units"/>
+        </HBox>
+        <List items="{/summary/regions}" headerText="Net value by region">
+          <StandardListItem title="{Region}" info="{NetValue} EUR"/>
+        </List>
+      </Panel>
+      <Table items="{/rows}" growing="false">
+        <headerToolbar>
+          <Toolbar>
+            <Title text="Sales (ZSD_C01), sorted by net value"/>
+            <ToolbarSpacer/>
+            <Text text="{/page}"/>
+            <Button icon="sap-icon://navigation-left-arrow" press="onPrev"/>
+            <Button icon="sap-icon://navigation-right-arrow" press="onNext"/>
+          </Toolbar>
+        </headerToolbar>
+        <columns>
+          <Column><Text text="Day"/></Column>
+          <Column><Text text="Material"/></Column>
+          <Column><Text text="Region"/></Column>
+          <Column hAlign="End"><Text text="Quantity"/></Column>
+          <Column hAlign="End"><Text text="Net value"/></Column>
+        </columns>
+        <items>
+          <ColumnListItem>
+            <cells>
+              <Text text="{CalendarDay}"/>
+              <Text text="{Material}"/>
+              <Text text="{Region}"/>
+              <Text text="{Quantity}"/>
+              <Text text="{NetValue} {Currency}"/>
+            </cells>
+          </ColumnListItem>
+        </items>
+      </Table>
+    </content>
+  </Page>
+</mvc:View>
